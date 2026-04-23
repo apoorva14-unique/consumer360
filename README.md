@@ -76,7 +76,7 @@ consumer360/
 │ ├── raw/
 │ │ └── Retail.csv
 │ └── processed/
-│ └── sales.csv
+│ └── rfm_output.csv
 │
 ├── week1_data_engineering/
 │ ├── data_inspection/
