@@ -57,3 +57,5 @@ print(rfm.head())
 
 print("\nSegment Distribution:")
 print(rfm['Segment'].value_counts())
+
+rfm.to_csv('data/processed/rfm_output.csv')
