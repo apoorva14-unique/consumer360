@@ -74,27 +74,24 @@ consumer360/
 │
 ├── data/
 │ ├── raw/
-│ │ └── retail.csv
+│ │ └── Retail.csv
 │ └── processed/
-│ └── rfm_output.csv
+│ └── sales.csv
 │
 ├── week1_data_engineering/
 │ ├── data_inspection/
 │ ├── data_cleaning/
 │ ├── data_transformation/
 │ ├── star_schema_design/
-│ │ └── schema.sql
 │ └── performance_optimization/
 │
 ├── week2_analysis/
+│ ├── market_basket/
 │ ├── rfm_analysis/
-│ │ └── rfm.py
 │ ├── segmentation/
-│ │ └── rfm_output.csv
-│ ├── validation/
-│ └── market_basket/
+│ └── validation/
 │
-├── dashboard/ # Power BI dashboards (upcoming)
+├── dashboard/
 │
 └── README.md
 ```
