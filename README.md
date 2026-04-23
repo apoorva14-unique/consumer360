@@ -72,26 +72,28 @@ Consumer360 is a retail analytics project designed to identify high-value custom
 ```
 consumer360/
 │
+├── dashboard/
+│
 ├── data/
-│ ├── raw/
-│ │ └── Retail.csv
-│ └── processed/
-│ └── rfm_output.csv
+│   ├── raw/
+│   │   └── Retail.csv
+│   └── processed/
 │
 ├── week1_data_engineering/
-│ ├── data_inspection/
-│ ├── data_cleaning/
-│ ├── data_transformation/
-│ ├── star_schema_design/
-│ └── performance_optimization/
+│   ├── data_cleaning/
+│   ├── data_inspection/
+│   ├── data_transformation/
+│   ├── performance_optimization/
+│   └── star_schema_design/
+│       └── schema.sql
 │
 ├── week2_analysis/
-│ ├── market_basket/
-│ ├── rfm_analysis/
-│ ├── segmentation/
-│ └── validation/
-│
-├── dashboard/
+│   ├── rfm_analysis/
+│   │   └── rfm.py
+│   ├── segmentation/
+│   │   └── rfm_output.csv
+│   ├── validation/
+│   └── market_basket/
 │
 └── README.md
 ```
