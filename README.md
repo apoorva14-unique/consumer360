@@ -69,7 +69,7 @@ Consumer360 is a retail analytics project designed to identify high-value custom
 
 ## 📁 Project Structure
 
-
+```
 consumer360/
 │
 ├── data/
@@ -97,7 +97,7 @@ consumer360/
 ├── dashboard/ # Power BI dashboards (upcoming)
 │
 └── README.md
-
+```
 
 ---
 
