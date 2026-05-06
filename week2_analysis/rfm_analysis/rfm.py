@@ -1,42 +1,54 @@
 import pandas as pd
+import numpy as np
 
-# Load dataset
-df = pd.read_csv('data/raw/retail.csv', encoding='ISO-8859-1')
+# ---------------- LOAD DATA ----------------
 
-# Preview
-print("Initial Data:")
-print(df.head())
+df = pd.read_csv('data/raw/Retail.csv', encoding='ISO-8859-1')
+
+print("Initial Shape:", df.shape)
 
 # ---------------- CLEANING ----------------
 
+# Remove missing CustomerID
 df = df.dropna(subset=['CustomerID'])
-df = df[df['Quantity'] > 0]
 
-df['Revenue'] = df['Quantity'] * df['UnitPrice']
+# Remove returns / invalid transactions
+df = df[(df['Quantity'] > 0) & (df['UnitPrice'] > 0)]
+
+# Convert date
 df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
+
+# Create Revenue column
+df['Revenue'] = df['Quantity'] * df['UnitPrice']
+
+print("After Cleaning Shape:", df.shape)
 
 # ---------------- RFM CALCULATION ----------------
 
-snapshot_date = df['InvoiceDate'].max()
+snapshot_date = df['InvoiceDate'].max() + pd.Timedelta(days=1)
 
 rfm = df.groupby('CustomerID').agg({
     'InvoiceDate': lambda x: (snapshot_date - x.max()).days,
-    'InvoiceNo': 'count',
+    'InvoiceNo': 'nunique',
     'Revenue': 'sum'
 })
 
 rfm.columns = ['Recency', 'Frequency', 'Monetary']
 
-print("\nRFM Table:")
+print("\nRFM Sample:")
 print(rfm.head())
 
 # ---------------- RFM SCORING ----------------
 
 rfm['R_score'] = pd.qcut(rfm['Recency'], 5, labels=[5,4,3,2,1], duplicates='drop')
-rfm['F_score'] = pd.qcut(rfm['Frequency'], 5, labels=[1,2,3,4,5], duplicates='drop')
-rfm['M_score'] = pd.qcut(rfm['Monetary'], 5, labels=[1,2,3,4,5], duplicates='drop')
+rfm['F_score'] = pd.qcut(rfm['Frequency'].rank(method='first'), 5, labels=[1,2,3,4,5])
+rfm['M_score'] = pd.qcut(rfm['Monetary'], 5, labels=[1,2,3,4,5])
 
-rfm['RFM_Score'] = rfm['R_score'].astype(str) + rfm['F_score'].astype(str) + rfm['M_score'].astype(str)
+rfm['RFM_Score'] = (
+    rfm['R_score'].astype(str) +
+    rfm['F_score'].astype(str) +
+    rfm['M_score'].astype(str)
+)
 
 # ---------------- SEGMENTATION ----------------
 
@@ -52,10 +64,15 @@ def segment(row):
 
 rfm['Segment'] = rfm.apply(segment, axis=1)
 
-print("\nRFM with Segments:")
-print(rfm.head())
+# ---------------- CLV (BONUS) ----------------
+
+rfm['CLV'] = rfm['Monetary'] * rfm['Frequency']
+
+# ---------------- OUTPUT ----------------
 
 print("\nSegment Distribution:")
 print(rfm['Segment'].value_counts())
 
-rfm.to_csv('data/processed/rfm_output.csv')
+rfm.to_csv('week2_analysis/segmentation/rfm_output.csv')
+
+print("\n✅ RFM Analysis Completed")

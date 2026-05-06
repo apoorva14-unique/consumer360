@@ -1,9 +1,8 @@
-# Pipeline script to run full analysis
+import subprocess
 
-import os
+print("🚀 Running Data Pipeline...\n")
 
-print("Running RFM Analysis...")
+# Run RFM analysis
+subprocess.run(["python", "week2_analysis/rfm_analysis/rfm.py"])
 
-os.system("python week2_analysis/rfm_analysis/rfm.py")
-
-print("Pipeline Completed")
+print("\n✅ Pipeline Completed Successfully")
