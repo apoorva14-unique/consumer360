@@ -7,3 +7,5 @@ Validation Checks:
 - Used nunique() for correct frequency calculation
 - Removed returns (negative Quantity)
 - Added CLV calculation for business insight
+- Verified customer count
+- Checked RFM score consistency
