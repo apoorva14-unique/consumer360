@@ -14,3 +14,5 @@ Outcome:
 
 Next Step:
 - Build dashboard with customer insights
+Added
+- Added KPI cards and customer behavior insights.
