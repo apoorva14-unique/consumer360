@@ -119,3 +119,25 @@ consumer360/
 - Customer distribution
 - RFM analysis
 - Interactive visualizations  
+
+## 🚀 Advanced Analytics (Week 4)
+
+### Market Basket Analysis
+- Identified products frequently purchased together
+- Generated association rules using Apriori Algorithm
+
+### Cohort Analysis
+- Analyzed customer retention behavior
+- Grouped customers based on first purchase month
+
+### Automation Pipeline
+- Automated complete analytics workflow
+- Integrated data pipeline, RFM, market basket, and cohort analysis
+
+---
+
+## ▶️ Run Full Project
+
+```bash
+python week4_advanced_analytics/automation/run_pipeline.py
+```
