@@ -107,8 +107,15 @@ consumer360/
 
 ---
 
-## 🚀 Next Steps
-- Build interactive dashboard using Power BI (Week 3)  
-- Perform Market Basket Analysis  
-- Conduct Cohort Analysis  
-- Automate pipeline for weekly updates (Week 4)   
+## 📊 Power BI Dashboard
+
+### Customer Segmentation Dashboard
+
+![Dashboard Preview](week3_dashboard/visuals/consumer360_dashboard.png)
+
+### Dashboard Features
+- Customer segmentation analysis
+- Revenue insights
+- Customer distribution
+- RFM analysis
+- Interactive visualizations  
