@@ -1,143 +1,179 @@
 # Consumer360 – Customer Segmentation & CLV Engine
 
 ## 📌 Project Overview
-Consumer360 is a retail analytics project designed to identify high-value customers and churn risks using data-driven techniques such as RFM (Recency, Frequency, Monetary) segmentation. The goal is to enable targeted marketing and improve customer retention.
+Consumer360 is a retail analytics project focused on customer segmentation and business insights using transactional retail data. The project uses RFM (Recency, Frequency, Monetary) analysis, Customer Lifetime Value (CLV), Market Basket Analysis, and Cohort Analysis to identify customer behavior patterns and improve business decision-making.
+
+The project also includes an automated analytics pipeline and an interactive Power BI dashboard for visualization.
 
 ---
 
-## 🎯 Objective
-- Identify "Champion" customers for premium engagement  
-- Detect "At Risk" customers for retention strategies  
-- Build a scalable analytics pipeline for business insights  
+## 🎯 Objectives
+- Identify high-value customers (“Champions”)
+- Detect churn-risk customers (“At Risk”)
+- Analyze customer purchasing behavior
+- Generate business insights for targeted marketing
+- Build an automated analytics workflow
 
 ---
 
 ## 🗂️ Dataset
-- Online Retail Dataset (Transactional data)
-- Each row represents a product within a transaction  
-- File used: `data/raw/retail.csv`
+- Online Retail Transaction Dataset
+- Each row represents a product purchased in a transaction
+
+### Main Columns
+- InvoiceNo
+- StockCode
+- Description
+- Quantity
+- InvoiceDate
+- UnitPrice
+- CustomerID
+- Country
+
+### Dataset File
+```text
+data/raw/Retail.csv
+```
 
 ---
 
 ## ⚙️ Tech Stack
-- Python (Pandas)
-- SQL (Schema Design)
-- Power BI (Upcoming)
+- Python (Pandas, NumPy, MLxtend)
+- SQL
+- Power BI
+- Git & GitHub
 
 ---
 
-## 📊 Work Completed
+# 📊 Project Workflow
 
-### 🔹 Week 1 – Data Engineering
-- Performed data inspection to understand dataset structure  
-- Identified issues such as:
-  - Missing Customer IDs  
-  - Negative quantities (returns/cancellations)  
-- Cleaned dataset:
-  - Removed null CustomerID  
-  - Filtered invalid transactions  
-- Created derived column:
-  - Revenue = Quantity × UnitPrice  
-- Designed basic schema for analytics  
+## 🔹 Week 1 – Data Engineering
+- Explored and inspected dataset
+- Removed null CustomerID values
+- Removed invalid/negative transactions
+- Created Revenue column
+- Converted InvoiceDate into datetime format
+- Designed SQL schema and optimization queries
 
 ---
 
-### 🔹 Week 2 – Customer Segmentation (RFM Analysis)
-- Calculated:
-  - Recency (days since last purchase)  
-  - Frequency (number of transactions)  
-  - Monetary (total spending)  
+## 🔹 Week 2 – Customer Segmentation (RFM Analysis)
+Calculated:
+- Recency
+- Frequency
+- Monetary values
 
-- Applied scoring:
-  - Used quantile-based scoring (1–5 scale)  
-  - Generated RFM Score  
+Implemented:
+- RFM scoring
+- Customer segmentation
+- CLV calculation
+- Validation checks
+- Automated data pipeline
 
-- Implemented segmentation:
-  - Champions  
-  - Loyal Customers  
-  - Potential Loyalists  
-  - At Risk  
+### Customer Segments
+- Champions
+- Loyal Customers
+- Potential Loyalists
+- At Risk
 
-- Validated results:
-  - Champions represent high-spending, frequent customers  
-  - At Risk customers show low recency  
-
-- Exported output:
-  - `data/processed/rfm_output.csv`
-
----
-
-## 📁 Project Structure
-
-```
-consumer360/
-│
-├── dashboard/
-│
-├── data/
-│   ├── raw/
-│   │   └── Retail.csv
-│   └── processed/
-│
-├── week1_data_engineering/
-│   ├── data_cleaning/
-│   ├── data_inspection/
-│   ├── data_transformation/
-│   ├── performance_optimization/
-│   └── star_schema_design/
-│       └── schema.sql
-│
-├── week2_analysis/
-│   ├── rfm_analysis/
-│   │   └── rfm.py
-│   ├── segmentation/
-│   │   └── rfm_output.csv
-│   ├── validation/
-│   └── market_basket/
-│
-└── README.md
+### Output Files
+```text
+data/processed/rfm_output.csv
+week2_analysis/data_pipeline/cleaned_data.csv
 ```
 
 ---
 
-## 📈 Key Insights
-- Champions are high-value customers with frequent and recent purchases  
-- At Risk customers indicate potential churn and require retention strategies  
-- Segmentation enables targeted marketing and better decision-making  
-
----
-
-## 📊 Power BI Dashboard
-
-### Customer Segmentation Dashboard
-
-![Dashboard Preview](week3_dashboard/visuals/consumer360_dashboard.png)
-
-### Dashboard Features
+## 🔹 Week 3 – Power BI Dashboard
+Created an interactive dashboard with:
 - Customer segmentation analysis
 - Revenue insights
 - Customer distribution
-- RFM analysis
-- Interactive visualizations  
+- KPI cards
+- RFM visualizations
 
-## 🚀 Advanced Analytics (Week 4)
+### Dashboard Preview
 
+![Dashboard Preview](week3_dashboard/visuals/consumer360_dashboard.png)
+
+---
+
+## 🔹 Week 4 – Advanced Analytics
 ### Market Basket Analysis
+- Applied Apriori Algorithm
+- Generated association rules
 - Identified products frequently purchased together
-- Generated association rules using Apriori Algorithm
 
 ### Cohort Analysis
 - Analyzed customer retention behavior
 - Grouped customers based on first purchase month
 
 ### Automation Pipeline
-- Automated complete analytics workflow
-- Integrated data pipeline, RFM, market basket, and cohort analysis
+Integrated:
+- Data Cleaning
+- RFM Analysis
+- Market Basket Analysis
+- Cohort Analysis
+
+Run full pipeline using:
+```bash
+python week4_advanced_analytics/automation/run_pipeline.py
+```
 
 ---
 
-## ▶️ Run Full Project
+# 📈 Key Insights
+- Champions are high-value repeat customers
+- At Risk customers indicate possible churn
+- Segmentation improves targeted marketing
+- Market Basket Analysis helps product recommendations
+- Cohort Analysis helps understand customer retention
+
+---
+
+# 📁 Project Structure
+
+```text
+consumer360/
+
+├── data/
+│   ├── raw/
+│   │   └── Retail.csv
+│   └── processed/
+
+├── week1_data_engineering/
+│   ├── data_cleaning/
+│   ├── data_inspection/
+│   ├── data_transformation/
+│   ├── performance_optimization/
+│   └── star_schema_design/
+
+├── week2_analysis/
+│   ├── data_pipeline/
+│   ├── rfm_analysis/
+│   ├── segmentation/
+│   └── validation/
+
+├── week3_dashboard/
+│   ├── data_preparation/
+│   ├── powerbi/
+│   └── visuals/
+
+├── week4_advanced_analytics/
+│   ├── market_basket/
+│   ├── cohort_analysis/
+│   └── automation/
+
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# ▶️ Run Full Project
 
 ```bash
 python week4_advanced_analytics/automation/run_pipeline.py
 ```
+
+---
